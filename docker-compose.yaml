@@ -2,8 +2,9 @@ version: "3.9"
 
 networks:
   laravel_workspace_api:
-  app_laravel_workspace_api_shared:
-    driver: bridge
+    name: laravel_workspace_api
+  # app_laravel_workspace_api_shared:
+    # driver: bridge
 
 services: 
   server:
@@ -22,7 +23,7 @@ services:
       - mysql
     networks:
       - laravel_workspace_api
-      - app_laravel_workspace_api_shared
+      # - app_laravel_workspace_api_shared
   php:
     build:
       context: .
@@ -31,7 +32,7 @@ services:
       - ./src:/var/www/html:delegated
     networks:
       - laravel_workspace_api
-      - app_laravel_workspace_api_shared
+      # - app_laravel_workspace_api_shared
   mysql:
     image: mysql:8.0.1
     env_file: 
